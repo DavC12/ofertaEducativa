@@ -36,7 +36,7 @@ export default class ConfigBag {
             throw new Error('A key must be provided.');
         }
 
-        return (this._items.hasOwnProperty(key) && this._items[key]);
+        return (Object.prototype.hasOwnProperty.call(this._items, key) && this._items[key]);
     }
 
     /**

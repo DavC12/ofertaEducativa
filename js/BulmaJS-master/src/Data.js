@@ -4,7 +4,7 @@ class Data {
     }
 
     set(uid, key, value) {
-        if(!this._data.hasOwnProperty(uid)) {
+        if(!Object.prototype.hasOwnProperty.call(this._data, uid)) {
             this._data[uid] = {};
         }
 
@@ -12,7 +12,7 @@ class Data {
     }
 
     get(uid, key) {
-        if(!this._data.hasOwnProperty(uid)) {
+        if(!Object.prototype.hasOwnProperty.call(this._data, uid)) {
             return undefined;
         }
 
@@ -20,7 +20,7 @@ class Data {
     }
 
     destroy(uid) {
-        if(this._data.hasOwnProperty(uid)) {
+        if(Object.prototype.hasOwnProperty.call(this._data, uid)) {
             delete this._data[uid];
         }
     }
