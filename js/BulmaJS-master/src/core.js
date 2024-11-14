@@ -23,7 +23,7 @@ function Bulma(selector) {
         this._elem = document.createElement('div');
     }
 
-    if (!this._elem.hasOwnProperty(Bulma.id)) {
+    if (!Object.prototype.hasOwnProperty.call(this._elem, Bulma.id)) {
         this._elem[Bulma.id] = Data.uid++;
     }
 
@@ -61,7 +61,7 @@ Bulma.plugins = {};
  * @return {Object} The newly created plugin instance
  */
 Bulma.create = (key, config) => {
-    if (!key || !Bulma.plugins.hasOwnProperty(key)) {
+    if (!key || !Object.prototype.hasOwnProperty.call(Bulma.plugins, key)) {
         throw new Error('[BulmaJS] A plugin with the key \'' + key + '\' has not been registered.');
     }
 
@@ -101,7 +101,7 @@ Bulma.parseDocument = (root = document) => {
         .sort((a, b) => Bulma.plugins[a].priority < Bulma.plugins[b].priority);
 
     Bulma.each(sortedPlugins, (key) => {
-        if (!Bulma.plugins[key].handler.hasOwnProperty('parseDocument')) {
+        if (!Object.prototype.hasOwnProperty.call(Bulma.plugins[key].handler, 'parseDocument')) {
             // eslint-disable-next-line no-console
             console.error('[BulmaJS] Plugin ' + key + ' does not have a parseDocument method. Automatic document parsing is not possible for this plugin.');
             return;
@@ -229,11 +229,11 @@ Bulma._stripScripts = (htmlString) => {
  * @param {*} [defaultValue=null] A default value of the key is not found
  */
 Bulma.getGlobalConfig = function (key, defaultValue = null) {
-    if (!window.hasOwnProperty('bulmaOptions')) {
+    if (!Object.prototype.hasOwnProperty.call(window, 'bulmaOptions')) {
         return defaultValue;
     }
 
-    if (!window.bulmaOptions.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(window.bulmaOptions, key)) {
         return defaultValue;
     }
 

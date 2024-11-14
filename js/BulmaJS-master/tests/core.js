@@ -3,14 +3,14 @@ QUnit.module('Core');
 QUnit.test('A plugin can be registered with core', function(assert) {
     createTestPlugin();
 
-    assert.ok(Bulma.plugins.hasOwnProperty('testplugin'), 'Plugin reference is added to the plugins object.');
+    assert.ok(Object.prototype.hasOwnProperty.call(Bulma.plugins, 'testplugin'), 'Plugin reference is added to the plugins object.');
     
-    assert.ok(Bulma.plugins.testplugin.hasOwnProperty('handler'), 'Plugin reference has a handler property.');
+    assert.ok(Object.prototype.hasOwnProperty.call(Bulma.plugins.testplugin, 'handler'), 'Plugin reference has a handler property.');
     
-    assert.ok(Bulma.plugins.testplugin.hasOwnProperty('priority'), 'Plugin reference has a priority property.');
+    assert.ok(Object.prototype.hasOwnProperty.call(Bulma.plugins.testplugin, 'priority'), 'Plugin reference has a priority property.');
     assert.ok(Bulma.plugins.testplugin.priority === 1, 'The priority of a plugin is correctly set.');
 
-    assert.ok(Bulma.prototype.hasOwnProperty('testplugin'), 'Plugin reference added to the Bulma class instance.');
+    assert.ok(Object.prototype.hasOwnProperty.call(Bulma.prototype, 'testplugin'), 'Plugin reference added to the Bulma class instance.');
 });
 
 QUnit.test('That the Bulma document parser correctly initialises a plugin', function(assert) {

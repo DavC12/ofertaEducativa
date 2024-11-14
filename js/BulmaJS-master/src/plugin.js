@@ -35,7 +35,7 @@ export default class Plugin {
     }
 
     on(event, callback) {
-        if(!this._events.hasOwnProperty(event)) {
+        if(!Object.prototype.hasOwnProperty.call(this._events, event)) {
             this._events[event] = [];
         }
 
@@ -43,7 +43,7 @@ export default class Plugin {
     }
 
     trigger(event, data = {}) {
-        if(!this._events.hasOwnProperty(event)) {
+        if(!Object.prototype.hasOwnProperty.call(this._events, event)) {
             return;
         }
 
